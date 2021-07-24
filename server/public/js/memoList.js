@@ -87,6 +87,8 @@ function doMemoList() {
                 $('#memo_list').empty();
             }
 
+            console.log(json.dataList)
+
             json.dataList.forEach(element => {
                 // init View
                 const divRoot = $('<div class="card-normal-bg" onclick=showDetail(this)></div>');
@@ -96,10 +98,10 @@ function doMemoList() {
                 let divTag = $('<div class="card-normal-tag tag_color"></div>');
 
                 // DataBinding.
-                divTitle.text(element.TITLE);
-                divContents.html(element.CONTENTS);
-                hEtc.text(element.MEMO_ID + "," + element.TAG);
-                divTag.addClass('tag' + element.TAG);
+                divTitle.text(element.title);
+                divContents.html(element.contents);
+                hEtc.text(element.manageNo + "," + element.tag);
+                divTag.addClass('tag' + element.tag);
 
                 divRoot.append(divTitle);
                 divRoot.append(divContents);

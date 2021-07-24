@@ -24,9 +24,8 @@
     "winston": "^3.3.3",
     "winston-daily-rotate-file": "^4.5.0"
   },
-  "devDependencies": {},
   "scripts": {
-    "start": "node server/server.js&"
+    "start": "set NODE_EVN=.env && node app.js"
   },
   "repository": {
     "type": "git",

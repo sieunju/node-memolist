@@ -21,12 +21,12 @@ router.get('/main.do', (req, res) => {
     res.render('login.html');
 });
 
-router.get("/hoethoet",(req,res) => {
+router.get("/hoethoet", (req, res) => {
     console.log("Page " + req.path)
     res.render('demo.html')
 })
 
-router.get("/api/timeout",(req,res) => {
+router.get("/api/timeout", (req, res) => {
     console.log("Api Time Out")
 })
 
@@ -93,11 +93,19 @@ router.post('/api/signIn', (req, res) => {
                     json.status = true
                     json.user_nm = rows[0].USER_NM
                     json.res_path = rows[0].RES_PATH
-                    if(rows[0].LOGIN_KEY != null) {
+                    if (rows[0].LOGIN_KEY != null) {
                         json.login_key = rows[0].LOGIN_KEY
                     }
 
-                    res.status(200).send(json).end()
+                    // 앱인경우.
+                    if (utils.isApp(utils.reqInfo(req))) {
+                        res.status(200).send(json).end()
+                    }
+                    // 웹인경우.
+                    else {
+                        res.cookie('loginKey',json.login_key)
+                        res.redirect('/memoList');
+                    }
                 } else {
                     res.status(400).send({
                         status: false,

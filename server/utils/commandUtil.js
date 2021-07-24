@@ -166,14 +166,19 @@ exports.logE = function (msg) {
  */
 const isDir = (fs, path, callback) => {
     console.log("PATH " + path)
-    fs.stat(path, (err, stats) => {
-        if (err && err.code === 'ENOENT')
-            return callback(null, true);
-        if (err)
-            return callback(err);
+    try {
+        fs.stat(path, (err, stats) => {
+            if (err && err.code === 'ENOENT')
+                return callback(null, true);
+            if (err)
+                return callback(err);
+    
+            return callback(null, !stats.isDirectory());
+        });
+    } catch(err) {
+        return callback(err)
+    }
 
-        return callback(null, !stats.isDirectory());
-    });
 }
 
 exports.checkDir = function (fs, path, callback) {

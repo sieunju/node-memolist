@@ -51,28 +51,6 @@ router.get('/upload', (req, res) => {
     res.render('dummyUpload.html');
 })
 
-// 파일 업로드
-router.post('/donginbi/file/thumbnail',upload.array('files'),(req,res) => {
-    try {
-        console.log(req.files)
-        let list = new Array()
-        for(let i =0; i< req.files.length; i++) {
-            list.push({
-                fileId : i
-            })
-        }
-        res.status(200).send({
-            data: list,
-            success : true
-        }).end()
-    } catch(err){
-        console.log(err)
-        res.status(200).send({
-            success : false
-        }).end()
-    }
-})
-
 /**
  * 파일 업로드
  * @param {MultiPart} file

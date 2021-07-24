@@ -2,27 +2,25 @@ const express = require('express');
 const session = require('express-session');
 const fileStore = require('session-file-store')(session);
 const app = express();
-// [s] Environment Variable
-const dotenv = require('dotenv');
-dotenv.config();
-// [e] Environment Variable
-const https = require('https');
+require('dotenv').config();                     // Environment Variable Setting
+require('./server/db/db_config').init();        // DB Setting
+// const https = require('https');
 const fs = require('fs');
 const path = require('path');
 const serveStatic = require('serve-static');      //특정 폴더의 파일들을 특정 패스로 접근할 수 있도록 열어주는 역할
-const api = require('./routes/index');
-const bodyParser = require('body-parser');
+const api = require('./server/routes/index');
+// const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const mysql = require('./db/db_config');
 const cors = require('cors'); //다중 서버로 접속하게 해주는 기능을 제공, 다른 ip 로 다른서버에 접속
-const utils = require('./utils/commandUtil');
+const utils = require('./server/utils/commandUtil');
 
 // 폴더 경로 설정.
-const view_dist = path.join(__dirname, '..', './client/views');
-const public = path.join(__dirname, '..', './client');
+const view_dist = path.join(__dirname, '','/server/public/views');
+const public = path.join(__dirname, '','/server/public');
 
-// 서버가 읽을 수 있도록 HTML 의 위치를 정의해줍니다.  
-app.set('views', view_dist);                                        // Web Client Resource
+// 서버가 읽을 수 있도록 HTML 의 위치를 정의해줍니다. 
+app.set('views',view_dist);
+// app.set('views', view_dist);                                        // Web Client Resource
 app.use(express.static(public));                                    // Web Client Resource
 app.use('/resource', serveStatic(path.join(__dirname, 'resource')));  // Upload File Resource.
 
@@ -69,9 +67,6 @@ app.use(session({
   saveUninitialized: true,
   store: new fileStore()
 }));
-
-// DB 세팅.
-mysql.init();
 
 // Handle Error Setting
 app.use(function (err, req, res, next) {
