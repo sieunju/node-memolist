@@ -165,6 +165,7 @@ exports.logE = function (msg) {
  * @param {function} callback 
  */
 const isDir = (fs, path, callback) => {
+    console.log("PATH " + path)
     fs.stat(path, (err, stats) => {
         if (err && err.code === 'ENOENT')
             return callback(null, true);
