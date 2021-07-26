@@ -15,11 +15,11 @@ const cors = require('cors'); //다중 서버로 접속하게 해주는 기능�
 const utils = require('./server/utils/commandUtil');
 
 // 폴더 경로 설정.
-const view_dist = path.join(__dirname, '','/server/public/views');
-const public = path.join(__dirname, '','/server/public');
+const view_dist = path.join(__dirname, '', '/server/public/views');
+const public = path.join(__dirname, '', '/server/public');
 
 // 서버가 읽을 수 있도록 HTML 의 위치를 정의해줍니다. 
-app.set('views',view_dist);
+app.set('views', view_dist);
 // app.set('views', view_dist);                                        // Web Client Resource
 app.use(express.static(public));                                    // Web Client Resource
 app.use('/resource', serveStatic(path.join(__dirname, 'resource')));  // Upload File Resource.
@@ -81,12 +81,10 @@ app.use(function (err, req, res, next) {
 // 업로드 용 디렉토리 생성 로직.
 utils.checkDir(fs, process.env.UPLOAD_ROOT, function (isSuccess, msg) {
   if (isSuccess) {
-    console.log("성공 !" + msg);
     utils.checkDir(fs, process.env.UPLOAD_IMG, null);
     utils.checkDir(fs, process.env.UPLOAD_TXT, null);
     utils.checkDir(fs, process.env.UPLOAD_ETC, null);
-  }
-  else {
+  } else {
     console.log("실패! " + msg);
   }
 })
