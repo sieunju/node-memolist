@@ -125,7 +125,7 @@ utils.checkDir(fs, process.env.UPLOAD_ROOT, function (isSuccess, msg) {
 //     console.log('Redeirect Http Server Start, Port: ' + 100);
 //   })
 // }
-
+ 
 const http = require('http');
 http.createServer(app).listen(process.env.PORT, () => {
   console.log('Http Server Start, Port: ' + process.env.PORT);
