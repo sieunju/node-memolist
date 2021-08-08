@@ -28,7 +28,7 @@ router.get('/api/test',(req, res) => {
 
 router.post('/api/test',(req,res) => {
     try {
-        let ranBoolean = Math.random() < 0.5
+        let ranBoolean = Math.random() < 0.7
         if(ranBoolean) {
             res.status(200).send({
                 status : true,
