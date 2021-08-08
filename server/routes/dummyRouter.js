@@ -44,6 +44,25 @@ router.post('/api/test',(req,res) => {
     }
 })
 
+router.get('/api/test/:cnt',(req,res) => {
+    try {
+        let cnt = req.params.cnt
+
+        if(cnt > 2) {
+            res.status(200).send({
+                status : true,
+                test : "dddd",
+                age : 30
+            })
+            .end()
+        } else {
+            res.status(503).end()
+        }
+    } catch(err) {
+        console.log("Error " + err)
+    }
+})
+
 // [E] TEST
 
 module.exports = router
