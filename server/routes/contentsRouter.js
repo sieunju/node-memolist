@@ -39,12 +39,12 @@ router.get('/youtube',(req,res) => {
     res.end();
 })
 
-router.get('/android/memo',(req,res) => {
+router.get('/android',(req,res) => {
     res.render('androidMemo.html')
     res.end()
 })
 
-router.get('/android/addMemo',(req,res) => {
+router.get('/androidAdd',(req,res) => {
     res.render('androidAddMemo.html')
     res.end()
 })
@@ -101,7 +101,7 @@ router.post('/api/memo', (req, res) => {
 /**
  * 안드로이드 기본 개념 관련 메모 추가.
  */
-router.post('/api/android/memo',(req,res) => {
+router.post('/api/android',(req,res) => {
     try {
         console.log(req.body)
         dataModel.postAndroidMemo(req.body, function onMessage(err,rows) {
@@ -126,11 +126,11 @@ router.post('/api/android/memo',(req,res) => {
     }
 })
 
-router.get('/api/android/memo',(req,res) => {
+router.get('/api/android',(req,res) => {
     try {
         dataModel.fetchAndroidMemo(function onMessage(err,rows) {
             if(err) {
-                console.log("GET /api/android/memo Error " + err)
+                console.log("GET /api/android Error " + err)
                 res.status(416).send({
                     status: false,
                     errMsg: err
