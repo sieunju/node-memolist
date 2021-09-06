@@ -1,7 +1,7 @@
 
 window.onload = function () {
     console.log(window.location.pathname)
-    if (window.location.pathname == "/android/memo") {
+    if (window.location.pathname == "/android") {
         fetchAndroidMemo()
     } else {
         // 타이틀 엔터키 방지 로직
