@@ -193,7 +193,7 @@ router.post('/api/java',(req,res) => {
 
 router.get('/api/java',(req,res) => {
     try {
-        dataModel.fetchAndroidMemo(function onMessage(err,rows) {
+        dataModel.fetchJavaMemo(function onMessage(err,rows) {
             if(err) {
                 console.log("GET /api/java Error " + err)
                 res.status(416).send({
