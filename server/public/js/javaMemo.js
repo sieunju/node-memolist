@@ -1,4 +1,3 @@
-
 window.onload = function () {
     console.log(window.location.pathname)
     if (window.location.pathname == "/java") {
@@ -29,7 +28,7 @@ window.onload = function () {
 function fetchJavaMemo() {
     $.ajax({
         type: "GET",
-        url: "../api/",
+        url: "../api/java",
         dataType: "JSON",
         success: function (json) {
 
