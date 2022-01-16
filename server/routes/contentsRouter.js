@@ -48,6 +48,17 @@ router.get('/androidAdd',(req,res) => {
     res.render('androidAddMemo.html')
     res.end()
 })
+
+router.get('/java',(req,res) => {
+    res.render('javaMemo.html')
+    res.end()
+})
+
+router.get('/javaAdd',(req,res) => {
+    res.render('javaAddMemo.html')
+    res.end()
+})
+
 // [e] Page
 
 // [s] API
@@ -131,6 +142,60 @@ router.get('/api/android',(req,res) => {
         dataModel.fetchAndroidMemo(function onMessage(err,rows) {
             if(err) {
                 console.log("GET /api/android Error " + err)
+                res.status(416).send({
+                    status: false,
+                    errMsg: err
+                }).end();
+            } else {
+                // console.log(req)
+                res.status(200).send({
+                    status : true,
+                    list : rows
+                }).end()
+            }
+        })
+    } catch(err) {
+        console.log('FetchMemo Error ' + err);
+        res.status(416).send({
+            status: false,
+            errMsg: err
+        }).end();
+    }
+})
+
+/**
+ * Java 기본 개념 추가 하기
+ */
+router.post('/api/java',(req,res) => {
+    try {
+        console.log(req.body)
+        dataModel.postJavaMemo(req.body, function onMessage(err,rows) {
+            if(err) {
+                console.log("POST /api/java/memo Error " + err)
+                res.status(416).send({
+                    status: false,
+                    errMsg: err
+                }).end();
+            } else {
+                console.log("DB Success " + rows)
+                res.redirect('/java')
+            }
+        })
+        
+    } catch(err) {
+        console.log('AddMemo Error ' + err);
+        res.status(416).send({
+            status: false,
+            errMsg: err
+        }).end();
+    }
+})
+
+router.get('/api/java',(req,res) => {
+    try {
+        dataModel.fetchAndroidMemo(function onMessage(err,rows) {
+            if(err) {
+                console.log("GET /api/java Error " + err)
                 res.status(416).send({
                     status: false,
                     errMsg: err
