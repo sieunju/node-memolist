@@ -35,8 +35,23 @@ const Memo = {
         db.fetch(sql, params, callBack)
     },
 
+    postJavaMemo: function (body, callBack) {
+        const title = body.title
+        const contents = body.contents
+        const date = new Date()
+        const sql = 'INSERT INTO JAVA_MEMO_TB (TITLE, CONTENTS, REGISTER_DATE)' +
+            'VALUES(?,?,?)';
+        const params = [title, contents, date]
+        db.fetch(sql, params, callBack)
+    },
+
     fetchAndroidMemo: function (callBack) {
         const sql = 'SELECT TITLE, CONTENTS FROM AND_MEMO_TB ORDER BY ID ASC'
+        db.fetch(sql, null, callBack)
+    },
+
+    fetchJavaMemo: function (callBack) {
+        const sql = 'SELECT TITLE, CONTENTS FROM JAVA_MEMO_TB ORDER BY ID ASC'
         db.fetch(sql, null, callBack)
     },
 
