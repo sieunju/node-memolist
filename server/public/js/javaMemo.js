@@ -1,8 +1,8 @@
 
 window.onload = function () {
     console.log(window.location.pathname)
-    if (window.location.pathname == "/android") {
-        fetchAndroidMemo()
+    if (window.location.pathname == "/java") {
+        fetchJavaMemo()
     } else {
         // 타이틀 엔터키 방지 로직
         document.getElementById('title').addEventListener('keydown', function (event) {
@@ -26,10 +26,10 @@ window.onload = function () {
 /**
  * fetch Java Memo
  */
-function fetchAndroidMemo() {
+function fetchJavaMemo() {
     $.ajax({
         type: "GET",
-        url: "../api/java",
+        url: "../api/",
         dataType: "JSON",
         success: function (json) {
 
