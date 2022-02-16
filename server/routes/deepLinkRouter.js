@@ -28,4 +28,21 @@ router.post('/api/deepLink', (req, res) => {
     }
 })
 
+router.get('/api/deepLink', (req,res) => {
+    try{
+        dataModel.fetchDeepLink(function onMessage(err, rows) {
+            if (err) {
+                res.status(404).end()
+            } else {
+                res.status(200).send({
+                    status : true,
+                    list : rows
+                }).end()
+            }
+        })
+    } catch(err) {
+        res.status(404).end()
+    }
+})
+
 module.exports = router
