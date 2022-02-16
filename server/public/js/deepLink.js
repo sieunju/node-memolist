@@ -42,6 +42,11 @@ function addDeepLink() {
     if (document.getElementById('link').value == "" || document.getElementById('title').value == "") {
         return false
     } else {
-        return true
+        let link = document.getElementById('link').value
+        if(link.startsWith('http')) {
+            return true
+        } else {
+            return false
+        }        
     }
 }
