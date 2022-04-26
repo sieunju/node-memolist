@@ -46,7 +46,7 @@ function addDeepLink() {
         if(link.startsWith('http')) {
             return true
         } else {
-            return false
+            return true
         }        
     }
 }
