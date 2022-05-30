@@ -1,7 +1,7 @@
 // 데이터 베이스 설정 
 const mysql = require('mysql');
 const mysqlConfig = {
-    host: 'localhost',
+    host: 'qtzz.synology.me',
     port: process.env.DB_PORT,
     user: process.env.DB_USER,
     password: process.env.DB_PW,

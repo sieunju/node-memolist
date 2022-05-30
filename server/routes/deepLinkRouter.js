@@ -45,4 +45,9 @@ router.get('/api/deepLink', (req,res) => {
     }
 })
 
+router.get('/deeplink/privacy', (req, res) => {
+    res.render('deeplinkbot-privacy.html')
+    res.end()
+})
+
 module.exports = router
