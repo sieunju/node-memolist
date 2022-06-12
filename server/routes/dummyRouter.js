@@ -64,6 +64,15 @@ router.get('/api/test/:cnt',(req,res) => {
     }
 })
 
+router.get('/daum/local',(req,res) => {
+    try {
+        res.render('demo.html')
+        res.end()
+    } catch(err) {
+        console.log("Error " + err)
+    }
+})
+
 // [E] TEST
 
 module.exports = router
