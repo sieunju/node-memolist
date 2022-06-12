@@ -1,44 +1,31 @@
 <html lang=“ko”>
 <script src=“https://code.jquery.com/jquery-3.2.1.min.js”></script>
-<script src=“https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js”></script>
-
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+ççç
 <head>
-    <meta name=“viewport”, charset=“utf-8”, content=“width=device-width, height=device-height, initial-scale=1.0,
-        minimum-scale=1.0, maximum-scale=1.0, user-scalable=no”>
-    <div id=“wrap” style=“display:none;border:1px solid;width:100%;height:100%;margin:5px 0;position:relative”>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link type="text/css" rel="stylesheet" href="../css/materialize.css" media="screen,projection" />
 
-<body onload=“sample3_execDaumPostcode()”>
-    </div>
+<body>
+  <div class="input-field col s6">
+    <input id="searchStr" name="searchStr" type="text" class="validate">
+    <label for="searchStr">검색어 입력</label>
+    <button id="btn-search" onclick="doSearch()" type="button" class="waves-effect waves-light btn" style="width:100%;">조회</button>
+  </div>
 </body>
+
+<script type="text/javascript" src="../js/materialize.js"></script>
+
 <script type=“text/javascript” charset=“UTF-8”>
-      // 우편번호 찾기 찾기 화면을 넣을 element
-      var element_wrap = document.getElementById(‘wrap’);
-      function foldDaumPostcode() {
-        // iframe을 넣은 element를 안보이게 한다.
-        element_wrap.style.display = ‘none’;
-      }
-      function sample3_execDaumPostcode() {
-        // 현재 scroll 위치를 저장해놓는다.
-        var currentScroll = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
+      function doSearch(){
         new daum.Postcode({
+          q : document.getElementById("searchStr").value
           oncomplete: function(data) {
-            try {
-              window.webkit.messageHandlers.iosScript.postMessage(JSON.stringify(data));
-            } catch (err) {
-              alert(err);
-            }
-            return
-          },
-          // 우편번호 찾기 화면 크기가 조정되었을때 실행할 코드를 작성하는 부분. iframe을 넣은 element의 높이값을 조정한다.
-          onresize : function(size) {
-            element_wrap.style.height = size.height+‘px’;
-          },
-          width : ’100%’,
-          height : ‘100%’
-        }).embed(element_wrap);
-        // iframe을 넣은 element를 보이게 한다.
-        element_wrap.style.display = ‘block’;
-      }
+            //data는 사용자가 선택한 주소 정보를 담고 있는 객체이며, 상세 설명은 아래 목록에서 확인하실 수 있습니다.
+            console.log(data)
+          }
+      });
     </script>
 </head>
 
