@@ -124,7 +124,7 @@ router.post('/api/v2/android',(req,res) => {
                 }).end();
             } else {
                 console.log("DB Success " + rows)
-                res.redirect('/android')
+                res.redirect('/page/android')
             }
         })
         
