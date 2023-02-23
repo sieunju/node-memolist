@@ -29,7 +29,7 @@ window.onload = function () {
 function fetchAndroidMemo() {
     $.ajax({
         type: "GET",
-        url: "../api/android",
+        url: "../api/v2/android",
         dataType: "JSON",
         success: function (json) {
 
